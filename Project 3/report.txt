@@ -1,0 +1,36 @@
+a.
+One obstacle I overcame is how to check the string whether is a well formed commands.  It was difficult when I started the program, I had no ideas what I am going to write for project 3, because this project was so different from the previous project in which only involved with more calculation. As I started the project, I was not on the right track in term of how I am supposed to check the commands. I questioned myself: “ am i checking the entire commands?”. obviously, this was impossible to do that. After asked my classmate about the problem, I had a much understanding of checking commands, I was checking to see if it starts with alpha , digit or others by using for loop. This worked out for my first function, because I was able to follow every case and went through every possible cases that caused the commands to be false.
+b.
+-take in a string as input: e,w,s,n,sw,se, nw,ne in both upper and lower cases and number
+-the bool iswellformedcommands; will check character by character from the input
+digit
+-if the input have any characters which do not include in the given characters, return false;
+-if the input have + - right after a digit return false 
+-if the input have four consecutive digits return false
+-if the input have o as the first character of the digit, return false;
+alpha 
+-if alpha is right after +- return 0; it must be a digit;
+-if alpha is repeated return 0;
+-if alpha w is next to e return 0;
+-if alpha s is next to n return 0;
+-can’t have four consecutive alpha  return 0;
+other wise return 1;
+-After checking the commands, check the commands whether can return to the origin in the cartesian.
+create int x and y as x axis and y axis
+record every step as the given input
+keep tracking on the robot 
+when x and y are equal to zero return 1;
+otherwise return 0;
+c.
+ assert(isWellFormedCommandString(“12N+3E"));
+assert(isWellFormedCommandString(“+3E”));
+assert(isWellFormedCommandString(“12N+E”));
+assert(isWellFormedCommandString(“1N+3E”));
+assert(isWellFormedCommandString(“1ddd2N+3E”));
+assert(isWellFormedCommandString(“1222N+3E”));
+assert(isWellFormedCommandString(“1-2N+3E”));
+assert(isWellFormedCommandString(“12Nn+3Ew”));
+assert(isWellFormedCommandString(“-12w+3999E”));
+assert(isWellFormedCommandString(“23N+333E333w555w223ne”));
+assert(isWellFormedCommandString(“++”));
+assert(isWellFormedCommandString(—“));
