@@ -1,0 +1,76 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red52\green52\blue52;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri720\partightenfactor0
+
+\f0\fs22 \cf0 One obstacle I overcame was to understand the functions we suppose to write on the Game.cpp and player.cpp. It was quit difficult to understand which function I should call in some conditions. For example, in void deal(), I supposed to call \
+the function that was written in Deck.cpp to shuffle the card. I was not aware that shuffle deck was already done shuffling card. All I need to do is to use Mdeck.shuffleDeck() to call that function.  All for dealer and player to accept card, I also need to do the same thing, as I call Mdealer.acceptCard(mDeck.dealcard); Similarly, player also need to do the same thing as Mplayer.accpetCard(mDeck.dealcard). This is very crucial to me because I was able to understand what I need to do for rest of my program.\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs28 \cf2 \expnd0\expndtw0\kerning0
+#include <iostream>\
+	#include <string>\
+	#include <cassert>\
+        #include "Game.h"\
+        #include "Player.h"\
+        #include "Card.h"\
+\
+	using namespace std;\
+\
+	int main()\
+	\{\
+           using namespace std;\
+           using namespace cs31;\
+       \'a0 \'a0 // test code\
+       \'a0 \'a0 Player p;\
+\'a0 \'a0        Card c( Face::ACE, Suit::DIAMONDS );\
+       \'a0 \'a0 Card d( Face::TEN, Suit::CLUBS );\
+       \'a0 \'a0 Card e( Face::THREE, Suit::SPADES );\
+       \'a0 \'a0 Card f( Face::EIGHT, Suit::HEARTS );\
+       \'a0 \'a0 assert( p.handcount() == 0 );\
+       \'a0 \'a0 assert( p.hasBlackJack() == false );\
+       \'a0 \'a0 assert( p.cardCount() == 0 );\
+       \'a0 \'a0 p.acceptCard( c );\
+       \'a0 \'a0 assert( p.handcount() == 11 );\
+       \'a0 \'a0 assert( p.hasBlackJack() == false );\
+       \'a0 \'a0 assert( p.cardCount() == 1 );\
+       \'a0 \'a0 assert( p.getCard(0) == c);\
+       \'a0 \'a0 p.acceptCard( d );\
+       \'a0 \'a0 assert( p.handcount() == 21 );\
+       \'a0 \'a0 assert( p.hasBlackJack() == true );\
+       \'a0 \'a0 p = Player();\
+       \'a0 \'a0 Player dealer; \
+       \'a0 \'a0 Game g( p, dealer );\
+       \'a0 \'a0 g.playerStands();\
+       \'a0 \'a0 g.dealerStands();\
+       \'a0 \'a0 assert( g.dealerBusted()==false );\
+       \'a0 \'a0 assert( g.playerBusted()==false );\
+       \'a0 \'a0 assert( g.playerTied() == true );\
+       \'a0 \'a0 assert( g.playerWon() == false );\
+       \'a0 \'a0 assert( g.playerLost() == false );\
+       \'a0 \'a0 assert( g.playerHasBlackJack() == false );\
+       \'a0 \'a0 assert( g.dealerHasBlackJack() == false );\
+       \'a0 \'a0 p = Player( );\
+       \'a0 \'a0 p.acceptCard( c );\
+       \'a0 \'a0 p.acceptCard( d );\
+       \'a0 \'a0 dealer = Player( );\
+       \'a0 \'a0 dealer.acceptCard( e );\
+       \'a0 \'a0 dealer.acceptCard( f );\
+       \'a0 \'a0 g = Game( p, dealer );\
+       \'a0 \'a0 g.playerStands();\
+       \'a0 \'a0 g.dealerStands();\
+       \'a0 \'a0 assert( g.dealerBusted()==false );\
+       \'a0 \'a0 assert( g.playerBusted()==false );\
+       \'a0 \'a0 assert( g.playerTied() == false ); \
+       \'a0 \'a0 assert( g.playerWon() == true );\
+       \'a0 \'a0 assert( g.playerLost() == false ); \
+       \'a0 \'a0 assert( g.playerHasBlackJack() == true );\
+       \'a0 \'a0 assert( g.dealerHasBlackJack() == false );\
+ \'a0\'a0 \'a0      cout << "all tests passed!" << endl;\
+       \'a0 \'a0 return 0;\
+\}\
+this code use to test whether my code is running properly }
